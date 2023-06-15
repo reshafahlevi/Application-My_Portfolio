@@ -144,7 +144,7 @@ namespace My_Portfolio.Controllers
 							getStatus.getStatus = 0;
 							getStatus.Username = string.Empty;
 							RedirectToAction("Index");
-							break;
+							break; 
 						}
 					}
 					else if (Obj.UsernameLogin == null || Obj.UsernameLogin == "" || Obj.UsernameLogin == string.Empty &&
