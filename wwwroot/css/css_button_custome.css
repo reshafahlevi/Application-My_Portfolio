@@ -1,0 +1,185 @@
+﻿
+/*css-button-custome-------------------------------------------------------------------*/
+.css-button-custome_dashboard
+{
+    color: #000000;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 0px #6dc911;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 10px 0px #616174;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #7efc00 10%, #6dc911 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_dashboard:hover 
+{
+    background: linear-gradient(180deg, #6dc911 10%, #7efc00 100%);
+}
+
+.css-button-custome_dashboard-text 
+{
+    position: relative;
+    padding: 10px 18px;
+}
+
+.css-button-custome_dashboard-icon 
+{
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+}
+
+.css-button-custome_dashboard-icon > i 
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 23px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+/*css-button-custome_back--------------------------------------------------------------*/
+.css-button-custome_back {
+    color: #000000;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 0px #837171;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 10px 0px #616174;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #a9a9a9 10%, #837171 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_back:hover {
+    background: linear-gradient(180deg, #837171 10%, #a9a9a9 100%);
+}
+
+.css-button-custome_back-text {
+    position: relative;
+    padding: 10px 18px;
+}
+
+.css-button-custome_back-icon {
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+}
+
+.css-button-custome_back-icon > i {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+
+/*css-button-custome_cancel------------------------------------------------------------*/
+.css-button-custome_cancel {
+    color: #000000;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 0px #c81414;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 10px 0px #616174;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #ff0000 10%, #c81414 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_cancel:hover {
+    background: linear-gradient(180deg, #c81414 10%, #ff0000 100%);
+}
+
+.css-button-custome_cancel-text {
+    position: relative;
+    padding: 10px 18px;
+}
+
+.css-button-custome_cancel-icon {
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+}
+
+.css-button-custome_cancel-icon > i {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+
+/*css-button-custome_login-------------------------------------------------------------*/
+.css-button-custome_login {
+    color: #000000;
+    font-size: 16px;
+    border-radius: 5px;
+    border: solid 0px #ffffff;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 10px 0px #616174;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #4169e1 10%, #eeff69 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_login:hover {
+    background: linear-gradient(180deg, #eeff69 10%, #4169e1 100%);
+}
+
+.css-button-custome_login-text {
+    position: relative;
+    padding: 10px 18px;
+    text-align: center !important;
+    margin-left: 130px !important;
+    margin-right: auto !important;
+}
+
+.css-button-custome_login-icon {
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+}
+
+.css-button-custome_login-icon > i {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 25px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+
+

@@ -1,0 +1,699 @@
+﻿@{
+    ViewData["Title"] = "Master Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Additional : responsive datatables.net cdn css------------------------------------------------------------------------------*@
+@*<link type="text/css" rel="stylesheet" href="~/datatables/css/dataTables.bootstrap4.min.css" />*@
+<link type="text/css" rel="stylesheet" href="~/css/datatables_style.css" />
+<link type="text/css" rel="stylesheet" href="~/css/css_button_custome.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+<style rel="stylesheet" type="text/css">
+/*css-button-custome_details-----------------------------------------------------------*/
+.css-button-custome_details_gridmenu{
+max-height: 30px !important;
+height: 30px !important;
+color: black;
+font-size: 13px;
+border-radius: 5px;
+border: solid 0px #179dca;
+box-shadow: 0px 0px 6px 0px #616174;
+text-decoration: none !important;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+font-family: Arial;
+background: linear-gradient(180deg, #00bfff 10%, #179dca 100%);
+display: inline-flex;
+align-items: center;
+padding: 0;
+}
+
+.css-button-custome_details_gridmenu:hover {
+background: linear-gradient(180deg, #179dca 10%, #00bfff 100%);
+}
+
+.css-button-custome_details_gridmenu-text {
+position: relative;
+padding: 10px 10px;
+}
+
+.css-button-custome_details_gridmenu-icon {
+position: relative;
+border-right: 1px solid #ffffff29;
+box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+padding: 10px 10px;
+font-size: 16px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+
+/*css-button-custome_getdatabyid-------------------------------------------------------*/
+.css-button-custome_getdatabyid {
+    max-height: 30px !important;
+    height: 30px !important;
+    color: #332e2e;
+    font-size: 13px;
+    border-radius: 5px;
+    border: solid 0px #e3e330;
+    box-shadow: 0px 0px 6px 0px #616174;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #ffff00 10%, #e3e330 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_getdatabyid:hover {
+    background: linear-gradient(180deg, #e3e330 10%, #ffff00 100%);
+}
+
+.css-button-custome_getdatabyid-text {
+    position: relative;
+    padding: 10px 8px;
+}
+
+.css-button-custome_getdatabyid-icon {
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+/*-------------------------------------------------------------------------------------*/
+
+
+/*css-button-custome_delete------------------------------------------------------------*/
+.css-button-custome_delete {
+    color: #000000;
+    font-size: 13px;
+    border-radius: 5px;
+    border: solid 0px #c81414;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 10px 0px #616174;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #ff0000 10%, #c81414 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    max-height: 30px !important;
+    height: 30px !important;
+}
+
+.css-button-custome_delete:hover {
+    background: linear-gradient(180deg, #c81414 10%, #ff0000 100%);
+}
+
+.css-button-custome_delete-text {
+    position: relative;
+    padding: 10px 8px;
+    color: white;
+}
+
+.css-button-custome_delete-icon {
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+/*-------------------------------------------------------------------------------------*/
+</style>
+
+@*----------------------------------------------------------------------------------------------------------------------------*@
+
+<body>
+    <h1 style="text-align:center !important">Master Menu</h1>
+    <br />
+    <br />
+
+    <!-- Content Master Menu & DataTables -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="md-form">
+                    <a style="text-decoration:none !important; margin-bottom: 15px !important; width: 100% !important;" class="css-button-custome_back" id="ButtonBackToDashboard" ClientIDMode="Static" asp-area="" asp-controller="Dashboard" asp-action="Dashboard">
+                        <span class="css-button-custome_back-icon">
+                            <i class="fa fa-arrow-left" style="margin-top: -5px !important;"></i>
+                        </span>
+                        <text style="text-align: center !important;margin: auto;">Back</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonAddData" ClientIDMode="Static" onclick="AddMenu();">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-plus" style="margin-top: -5px !important;"></i></span>
+                        <text style="text-align: center !important;margin: auto;">Add</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonUpdateData" ClientIDMode="Static" onclick="UpdateMenu();">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-exchange" style="margin-top: -5px !important;"></i></span>
+                        <text style="text-align: center !important;margin: auto;">Update</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="md-form">
+                    <a style="text-decoration:none !important; margin-bottom: 15px !important; width: 100% !important;" class="css-button-custome_cancel" id="ButtonCancel" ClientIDMode="Static" asp-area="" asp-controller="MasterMenu" asp-action="MasterMenu">
+                        <span class="css-button-custome_cancel-icon" style="margin-top: -5px !important;">
+                            <i class="fa fa-remove" style="margin-top: -5px !important;"></i>
+                        </span>
+                        <span class="css-button-custome_cancel-text" style="margin-left: auto !important; margin-right: auto !important;">
+                            <span>Cancel</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>   
+        <hr style="border: 1.5px solid black !important;margin-top: 0px;" />  
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxJenisMenu">Jenis Menu</label>
+                        <select class="form-control" id="TextboxJenisMenu" ClientIDMode="Static" name="selected" placeholder="Pilih" onchange="">
+                            <option value="" hidden="hidden"></option>
+                            <option value="Drink">Drink</option>
+                            <option value="Food">Food</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxKodeMenu">Kode Menu</label>
+                        <input type="text" class="form-control" id="TextboxKodeMenu" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxNamaMenu">Nama Menu</label>
+                        <input type="text" class="form-control" id="TextboxNamaMenu" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxHargaSatuan">Harga Satuan</label>
+                        <input type="number" class="form-control" id="TextboxHargaSatuan" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr style="border: 1.5px solid black !important;" />
+        <br/>
+
+        <div class="table-responsive">
+            <div style="width:100%; margin:0 auto;">
+                <table id="DataTablesMasterMenu" ClientIDMode="Static" class="table table-striped table-bordered dt-responsive nowrap dataTables-fontstyle" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="dataTables-fontstyle" style="width: 5% !important;">Id</th>
+                            <th class="dataTables-fontstyle">Kode Menu</th>
+                            <th class="dataTables-fontstyle">Nama Menu</th>
+                            <th class="dataTables-fontstyle">Jenis Menu</th>
+                            <th class="dataTables-fontstyle">Harga Satuan</th>
+                            <th class="dataTables-fontstyle" style="width: 10% !important;">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Detail Item -->
+    <div class="container">
+        <div class="modal fade" id="PopUpDetailItem" ClientIDMode="Static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label for="LabelDetail" style="text-align: center !important;margin: auto;width: 100% !important;"><b>Detail Menu</b></label>
+                        <button type="button" onclick="ClosePopUpModal();" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: red;">x</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        @*<form>*@
+                        @*<div class="form-group">
+                        <label for="PopUp_TextboxId">Id</label>
+                        <input type="number" class="form-control" id="PopUp_TextboxId" ClientIDMode="Static" placeholder="" disabled>
+                        </div>*@
+                        <div class="form-group">                  
+                            <label for="PopUp_TextboxJenisMenu">Jenis Menu</label>
+                            <input type="text" class="form-control" id="PopUp_TextboxJenisMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="PopUp_TextboxKodeMenu">Kode Menu</label>
+                            <input type="text" class="form-control" id="PopUp_TextboxKodeMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="PopUp_TextboxNamaMenu">Nama Menu</label>
+                            <input type="text" class="form-control" id="PopUp_TextboxNamaMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="PopUp_TextboxHargaSatuan">Harga Satuan</label>
+                            <input type="text" class="form-control" id="PopUp_TextboxHargaSatuan" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        @*<div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" id="exampleInputFile">
+                        <p class="help-block">Example block-level help text here.</p>
+                        </div>
+                        <div class="checkbox">
+                        <label>
+                        <input type="checkbox"> Check me out
+                        </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>*@
+                        @*</form>*@
+                        <hr/>
+                        <div class="form-group">
+                            <button type="button" onclick="ClosePopUpModal();" class="btn btn-danger dataTables-buttonstyle" data-dismiss="modal" role="button" style="width:100% !important;height: 35px !important;margin-bottom: -15px !important;font-size: 14px !important;">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @*Additional : responsive datatables.net cdn script---------------------------------------------------------------------------*@
+    @*<script type="text/javascript" src="~/datatables/js/dataTablesMasterMenu.js"></script>*@
+    @*<script type="text/javascript" src="~/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+    @*----------------------------------------------------------------------------------------------------------------------------*@
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+    @*----------------------------------------------------------------------------------------------------------------------------*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var DT = $("#DataTablesMasterMenu").DataTable
+            ({
+                //"scrollY": 100,
+                //"scrollX": true,
+                //"scrollCollapse": true,
+                //"scrollResize": true,
+                //"responsive": true,
+                //"processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": true, // for disable multiple column at once
+                "fixedHeader": true, // this is fixed header
+                "pagingType": "full_numbers", // this is for paging type
+                "lengthChange": true, // this is for length change
+                "lengthMenu":  // this is for length dropdown
+                    [
+                        [5, 10, 25, 50, 100, 1000],
+                        [5, 10, 25, 50, 100, 1000],
+                    ],
+                "ajax":
+                {
+                    "url": "/MasterMenu/LoadData",
+                    "type": "POST",
+                    "datatype": "JSON"
+                },
+                "columnDefs":
+                [{
+                    "targets": [0],
+                    "visible": true,
+                    "searchable": true,
+                    "className": "SelectedAllCheckbox",
+                    "checkboxes":
+                    {
+                        "selectRow": true,
+                        "selectAllPages": false
+                    },
+                }],
+                "select":
+                {
+                    "style": "multi",
+                    "selector": "td:first-child"
+                },
+                "order": [[0, "asc"]],
+                "columns":
+                [
+                    {
+                        "data": "id",
+                        "name": "id",
+                        "autoWidth": true, "target": 0, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "kodeMenu",
+                        "name": "kodeMenu",
+                        "autoWidth": true, "target": 1, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "namaMenu",
+                        "name": "namaMenu",
+                        "autoWidth": true, "target": 2, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "jenisMenu",
+                        "name": "jenisMenu",
+                        "autoWidth": true, "target": 3, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "hargaSatuan",
+                        "name": "hargaSatuan",
+                        "autoWidth": true, "target": 4, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": null,
+                        "name": null,
+                        "autoWidth": true, "target": 5, "visible": true, "searchable": false, "orderable": false, "render": function (data, row, type, full, meta) 
+                        {
+                            return "<a id='ButtonGetDetailsById' ClientIDMode='Static' href='#PopUpDetailItem' data-toggle='modal' data-target='#PopUpDetailItem' class='css-button-custome_details_gridmenu' onclick='GetDetailMenuById(\"" + data.jenisMenu + "\", \"" + data.kodeMenu + "\", \"" + data.namaMenu + "\", \"" + data.hargaSatuan + "\");'><span class='css-button-custome_details_gridmenu-icon'><i class='fa fa-eye'></i></span><span class='css-button-custome_details_gridmenu-text'><span>View</span></span></a>" + " | " +
+                                   "<a id='ButtonGetDataById' ClientIDMode='Static' class='css-button-custome_getdatabyid' onclick='GetDataById(\"" + data.id + "\");'><span class='css-button-custome_getdatabyid-icon'><i class='fa fa-arrow-left'></i></span><span class='css-button-custome_getdatabyid-text'><span>Get </span></span></a>" + " | " +
+                                   "<a id='ButtonDeleteDataById' ClientIDMode='Static' class='css-button-custome_delete' onclick='DeleteDataById(\"" + data.kodeMenu + "\");'><span class='css-button-custome_delete-icon'><i class='fa fa-remove'></i></span><span class='css-button-custome_delete-text'><span>Delete</span></span></a>";
+                        }
+                    }
+                ]
+            });
+        });
+
+        /*----------------------------------------------------------------------------*/
+        $("#TextboxJenisMenu").on("change", function () 
+        {
+            /*------------------------------------------------------------------------*/
+            //var JenisMenu = $('#TextboxJenisMenu option:selected').val();
+            //$.post("/MasterMenu/Autonumber_KodeMenu",
+            //{
+            //    JenisMenu: JenisMenu
+            //});
+            /*------------------------------------------------------------------------*/
+            var JenisMenu = $('#TextboxJenisMenu option:selected').val();
+            console.log("Jenis Menu : " + JenisMenu);
+            //alert("Jenis Menu :" + JenisMenu);
+            //var SendData = { JenisMenu: JenisMenu };
+            $.ajax
+            ({
+                type: "POST",
+                url: "/MasterMenu/Autonumber_KodeMenu/", body:
+                {
+                    JenisMenu: JenisMenu
+                },
+                contentType: "application/json; charset=utf-8",
+                datatype: "JSON",
+                data: JSON.stringify(JenisMenu),
+                success: function (response) 
+                {
+                    if (response != null) 
+                    {
+                        $("#TextboxKodeMenu").val(response.kodeMenu);
+                        return true;
+                    }
+                    else 
+                    {
+                        alert("Something went wrong...!");
+                        return false;
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+        /*----------------------------------------------------------------------------*/
+
+        function AddMenu() 
+        {
+            var kodeMenu = $("#TextboxKodeMenu").val();
+            var namaMenu = $("#TextboxNamaMenu").val();
+            var jenisMenu =  $("#TextboxJenisMenu").val();
+            var hargaSatuan = $("#TextboxHargaSatuan").val();
+
+            var ObjectMenu =
+            {
+                KodeMenu: kodeMenu,
+                NamaMenu: namaMenu,
+                JenisMenu: jenisMenu,
+                hargaSatuan: hargaSatuan
+            };
+
+            console.log("Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Jenis Menu : " + jenisMenu, "Harga Sauan : " + hargaSatuan);
+            //alert("Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Jenis Menu : " + jenisMenu, "Harga Sauan : " + hargaSatuan);
+            if (confirm("Are you sure you want to add menu...?")) {
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: "/MasterMenu/AddData/", body:
+                        {
+                            KodeMenu: kodeMenu,
+                            NamaMenu: namaMenu,
+                            JenisMenu: jenisMenu,
+                            hargaSatuan: hargaSatuan
+                        },
+                        contentType: "application/json; charset=utf-8",
+                        datatype: "JSON",
+                        data: JSON.stringify(ObjectMenu),
+                        success: function (response) 
+                        {
+                            if (response != null) 
+                            {
+                                alert("Successful add menu...!");
+                                window.location.href = "/MasterMenu/MasterMenu";
+                            }
+                            else 
+                            {
+                                alert("Failed add menu, something went wrong...!");
+                                window.location.href = "/MasterMenu/MasterMenu";
+                            }
+                        },
+                        failure: function (response) 
+                        {
+                            alert(response.responseText);
+                        },
+                        error: function (response) 
+                        {
+                            alert(response.responseText);
+                        }
+                    });
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function UpdateMenu() 
+        {
+            var kodeMenu = $("#TextboxKodeMenu").val();
+            var namaMenu = $("#TextboxNamaMenu").val();
+            var jenisMenu =  $("#TextboxJenisMenu").val();
+            var hargaSatuan = $("#TextboxHargaSatuan").val();
+
+            var ObjectMenu =
+            {
+                KodeMenu: kodeMenu,
+                NamaMenu: namaMenu,
+                JenisMenu: jenisMenu,
+                hargaSatuan: hargaSatuan
+            };
+
+            console.log("Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Jenis Menu : " + jenisMenu, "Harga Sauan : " + hargaSatuan);
+            //alert("Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Jenis Menu : " + jenisMenu, "Harga Sauan : " + hargaSatuan);
+            if (confirm("Are you sure you want to update menu...?")) {
+                $.ajax
+                    ({
+                        type: "PUT", //"PACTH" //"PUT" //"POST" //"GET" //"DELETE"
+                        url: "/MasterMenu/UpdateData/", body:
+                        {
+                            KodeMenu: kodeMenu,
+                            NamaMenu: namaMenu,
+                            JenisMenu: jenisMenu,
+                            hargaSatuan: hargaSatuan
+                        },
+                        contentType: "application/json; charset=utf-8",
+                        datatype: "JSON",
+                        data: JSON.stringify(ObjectMenu),
+                        success: function (response) 
+                        {
+                            if (response != null) 
+                            {
+                                alert("Successful update menu...!");
+                                window.location.href = "/MasterMenu/MasterMenu";
+                            }
+                            else 
+                            {
+                                alert("Failed update menu, something went wrong...!");
+                                window.location.href = "/MasterMenu/MasterMenu";
+                            }
+                        },
+                        failure: function (response) 
+                        {
+                            alert(response.responseText);
+                        },
+                        error: function (response) 
+                        {
+                            alert(response.responseText);
+                        }
+                    });
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function GetDetailMenuById(jenisMenu, kodeMenu, namaMenu, hargaSatuan) 
+        {
+            console.log("Jenis Menu : " + jenisMenu, "Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Harga Sauan : " + hargaSatuan);
+            //alert("Nama Menu :" + namaMenu);
+            $("#PopUpDetailItem").modal('show')
+            //$("#PopUp_TextboxId").val(id);
+            $("#PopUp_TextboxJenisMenu").val(jenisMenu);
+            $("#PopUp_TextboxKodeMenu").val(kodeMenu);
+            $("#PopUp_TextboxNamaMenu").val(namaMenu);
+            $("#PopUp_TextboxHargaSatuan").val(hargaSatuan);
+        }
+
+        function GetDataById(id) 
+        {
+            console.log("Id : " + id);
+            //alert("Id :" + id);
+            /*------------------------------------------------------------------------*/
+            //$.post("/MasterMenu/GetDataById",
+            //{
+            //    Id: id
+            //});
+            /*------------------------------------------------------------------------*/
+            $.ajax
+            ({
+                type: "POST",
+                url: "/MasterMenu/GetDataById/", body:
+                {
+                    Id: id
+                },
+                contentType: "application/json; charset=utf-8",
+                datatype: "JSON",
+                data: JSON.stringify(id),
+                success: function (response) 
+                {
+                    if (response != null) 
+                    {
+                        $("#TextboxJenisMenu").val(response.jenisMenu);
+                        $("#TextboxKodeMenu").val(response.kodeMenu);
+                        $("#TextboxNamaMenu").val(response.namaMenu);
+                        $("#TextboxHargaSatuan").val(response.hargaSatuan);
+                        return true;
+                    }
+                    else 
+                    {
+                        alert("Something went wrong...!");
+                        return false;
+                    }
+                },
+                failure: function (response) 
+                {
+                    alert(response.responseText);
+                },
+                error: function (response) 
+                {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function DeleteDataById(kodeMenu) 
+        {
+            console.log("Kode Menu : " + kodeMenu);
+            //alert("Kode Menu : " + kodeMenu);
+            if (confirm("Are you sure you want to delete menu...?")) 
+            {
+                $.ajax
+                ({
+                    type: "POST",
+                    url: "/MasterMenu/DeleteDataById/", body:
+                    {
+                        KodeMenu: kodeMenu
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "JSON",
+                    data: JSON.stringify(kodeMenu),
+                    success: function (response) 
+                    {
+                        if (response != null || response == 1) 
+                        {
+                            alert("Successful delete menu...!");
+                            window.location.href = "/MasterMenu/MasterMenu";
+                        }
+                        else 
+                        {
+                            alert("Failed delete menu, something went wrong...!");
+                            window.location.href = "/MasterMenu/MasterMenu";
+                        }
+                    },
+                    failure: function (response) 
+                    {
+                        alert(response.responseText);
+                    },
+                    error: function (response) 
+                    {
+                        alert(response.responseText);
+                    }
+                });
+
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
+        function Delete(id) 
+        {
+            console.log("Id : " + id);
+            //alert("Id :" + id);
+            var url = "/MasterMenu/DeleteDataById";
+            $.post(url, { ID: id }, function (data) 
+            {
+                if (data) 
+                {
+                    alert("Successful delete menu...!");
+                    window.location.href = "/MasterMenu/MasterMenu";
+                    //--------------------------------------------//
+                    oTable = $('#DataTablesMasterMenu').DataTable();
+                    oTable.draw();
+                    return true;
+                }
+                else 
+                {
+                    alert("Something went wrong...!");
+                    window.location.href = "/MasterMenu/MasterMenu";
+                    return false;
+                }
+            });
+        }
+
+        function ClosePopUpModal() 
+        {
+            $("#PopUpDetailItem").modal('hide')
+        }
+    </script>
+}

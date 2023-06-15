@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    @*Existing----------------------------------------------------------------------------------------------------------------*@
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="~/WebApplication_Inspirotechs.styles.css" asp-append-version="true"/>*@
+    @*------------------------------------------------------------------------------------------------------------------------*@
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background: #1a2226;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation" style="margin-left: 25px !important;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1" style="margin-left: 25px !important;">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Dashboard" style="color:white !important;">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white !important;">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container text-center">
+            <br />
+            &copy; 2023 - @TempData["Username"] - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <br>
+
+    @*Existing------------------------------------------------------------------------------------------*@
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @*--------------------------------------------------------------------------------------------------*@
+
+    @*Additional----------------------------------------------------------------------------------------*@
+    @*@RenderSection("Scripts", required: false)*@
+    @*--------------------------------------------------------------------------------------------------*@
+
+</body>
+</html>

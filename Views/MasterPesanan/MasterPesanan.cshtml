@@ -1,0 +1,273 @@
+﻿@{
+    ViewData["Title"] = "Master Pesanan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Additional : responsive datatables.net cdn css------------------------------------------------------------------------------*@
+@*<link type="text/css" rel="stylesheet" href="~/datatables/css/dataTables.bootstrap4.min.css" />*@
+<link type="text/css" rel="stylesheet" href="~/css/datatables_style.css" />
+<link type="text/css" rel="stylesheet" href="~/css/css_button_custome.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+<style type="text/css">
+/*css-button-custome_details-----------------------------------------------------------*/
+.css-button-custome_details 
+{
+    max-height: 30px !important;
+    height: 30px !important;
+    color: #000000;
+    font-size: 13px;
+    border-radius: 5px;
+    border: solid 0px #179dca;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 6px 0px #616174;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #00bfff 10%, #179dca 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_details:hover 
+{
+    background: linear-gradient(180deg, #179dca 10%, #00bfff 100%);
+}
+
+.css-button-custome_details-text 
+{
+position: relative;
+padding: 10px 18px;
+}
+
+.css-button-custome_details-icon 
+{
+position: relative;
+border-right: 1px solid #ffffff29;
+box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+padding: 10px 10px;
+}
+
+.css-button-custome_details-icon > i 
+{
+position: relative;
+display: inline-block;
+vertical-align: middle;
+font-size: 18px;
+}
+</style>
+@*----------------------------------------------------------------------------------------------------------------------------*@
+
+<body>
+    <h1 style="text-align:center !important">Master Pesanan</h1>
+    <br />
+    <br />
+
+    <!-- Content Master Pesanan & DataTables -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="md-form">
+                    <a style="text-decoration:none !important; margin-bottom: 15px !important; width: 100% !important;" class="css-button-custome_back" id="ButtonBackToDashboard" ClientIDMode="Static" asp-area="" asp-controller="Dashboard" asp-action="Dashboard">
+                        <span class="css-button-custome_back-icon">
+                            <i class="fa fa-arrow-left" style="margin-top: -5px !important;"></i>
+                        </span>
+                        <text style="text-align: center !important;margin: auto;">Back</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="md-form">
+                    <a style="text-decoration:none !important; margin-bottom: 15px !important; width: 100% !important;" class="css-button-custome_cancel" id="ButtonCancel" ClientIDMode="Static" asp-area="" asp-controller="MasterMenu" asp-action="MasterMenu">
+                        <span class="css-button-custome_cancel-icon" style="margin-top: -5px !important;">
+                            <i class="fa fa-remove" style="margin-top: -5px !important;"></i>
+                        </span>
+                        <span class="css-button-custome_cancel-text" style="margin-left: auto !important; margin-right: auto !important;">
+                            <span>Cancel</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonAddData" ClientIDMode="Static" asp-area="" asp-controller="" asp-action="">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-plus" style="margin-top: -5px !important;"></i></span>
+                        <text style="text-align: center !important;margin: auto;">Add</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonUpdateData" ClientIDMode="Static" asp-area="" asp-controller="" asp-action="" style="text-decoration:none !important">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-exchange" style="margin-top: -5px !important;"></i></span>
+                        <text style="text-align: center !important;margin: auto;">Update</text>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 1.5px solid black !important;margin-top: 0px;" />
+        <form>
+            @*<div class="form-group">
+            <label for="TextboxId">Id</label>
+            <input type="number" class="form-control" id="TextboxId" ClientIDMode="Static" placeholder="" disabled>
+            </div>*@
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="md-form">
+                        <label for="TextboxJenisMenu">Jenis Menu</label>
+                        <select class="form-control" id="TextboxJenisMenu" ClientIDMode="Static" name="selected" placeholder="Pilih" onchange="">
+                            <option value="" hidden="hidden"></option>
+                            <option value="Drink">Drink</option>
+                            <option value="Food">Food</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxKodePemesanan">Kode Pemesanan</label>
+                        <input type="text" class="form-control" id="TextboxKodePemesanan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxNamaPemesan">Nama Pemesan</label>
+                        <input type="text" class="form-control" id="TextboxNamaPemesan" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxKodeMenu">Kode Menu</label>
+                        <input type="text" class="form-control" id="TextboxKodeMenu" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxNamaMenu">Nama Menu</label>
+                        <input type="text" class="form-control" id="TextboxNamaMenu" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxJumlahPesanan">Jumlah Pesanan</label>
+                        <input type="number" class="form-control" id="TextboxJumlahPesanan" ClientIDMode="Static" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+                        <label for="TextboxHargaSatuan">Harga Satuan</label>
+                        <input type="number" class="form-control" id="TextboxHargaSatuan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br />
+        <hr style="border: 1.5px solid black !important;" />
+        <br />
+        <div class="table-responsive">
+            <div style="width:100%; margin:0 auto;">
+                <table id="DataTablesMasterPesanan" ClientIDMode="Static" class="table table-striped table-bordered dt-responsive nowrap dataTables-fontstyle" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="dataTables-fontstyle"><input type="checkbox" name="HeaderAllCheckbox" class="SelectedAllCheckbox" id="HeaderAllCheckbox" ClientIDMode="Static"></th>
+                            <th class="dataTables-fontstyle" style="width: 5% !important;">Id</th>
+                            <th class="dataTables-fontstyle">Kode Pemesanan</th>
+                            <th class="dataTables-fontstyle">Nama Pemesan</th>
+                            <th class="dataTables-fontstyle">Kode Menu</th>
+                            <th class="dataTables-fontstyle">Nama Menu</th>
+                            <th class="dataTables-fontstyle">JumlahPesanan</th>
+                            <th class="dataTables-fontstyle">Harga Satuan</th>
+                            <th class="dataTables-fontstyle" style="width: 10% !important;">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Detail Item -->
+    <div class="container">
+        <div class="modal fade" id="PopUpDetailItem" ClientIDMode="Static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label for="LabelDetail" style="text-align: center !important;margin: auto;width: 100% !important;"><b>Detail Menu</b></label>
+                    <button type="button" onclick="ClosePopUpModal();" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: red;">x</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    @*<form>*@
+                    @*<div class="form-group">
+                    <label for="TextboxId">Id</label>
+                    <input type="number" class="form-control" id="TextboxId" ClientIDMode="Static" placeholder="" disabled>
+                    </div>*@
+                    <div class="form-group">
+                        <label for="TextboxKodePemesanan">Kode Pemesanan</label>
+                        <input type="text" class="form-control" id="TextboxKodePemesanan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="TextboxNamaPemesan">Nama Pemesan</label>
+                        <input type="text" class="form-control" id="TextboxNamaPemesan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="TextboxKodeMenu">Kode Menu</label>
+                        <input type="text" class="form-control" id="TextboxKodeMenu" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="TextboxNamaMenu">Nama Menu</label>
+                        <input type="text" class="form-control" id="TextboxNamaMenu" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="TextboxJumlahPesanan">Jumlah Pesanan</label>
+                        <input type="number" class="form-control" id="TextboxJumlahPesanan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="TextboxHargaSatuan">Harga Satuan</label>
+                        <input type="number" class="form-control" id="TextboxHargaSatuan" ClientIDMode="Static" placeholder="" disabled>
+                    </div>
+                    @*<div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="checkbox">
+                    <label>
+                    <input type="checkbox"> Check me out
+                    </label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>*@
+                    @*</form>*@
+                    <hr />
+                    <div class="form-group">
+                        <button type="button" onclick="ClosePopUpModal();" class="btn btn-danger dataTables-buttonstyle" data-dismiss="modal" role="button" style="width:100% !important;height: 35px !important;margin-bottom: -15px !important;font-size: 14px !important;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @*Additional : responsive datatables.net cdn script---------------------------------------------------------------------------*@
+    @*<script type="text/javascript" src="~/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/datatables/js/dataTables.bootstrap4.min.js"></script>*@
+    <script type="text/javascript" src="~/datatables/js/dataTablesMasterPesanan.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+    @*----------------------------------------------------------------------------------------------------------------------------*@
+
+    <script type="text/javascript"></script>
+}

@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId></PackageId>
+    <Authors>My_Portfolio</Authors>
+    <Product>My_Portfolio</Product>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Database\**" />
+    <Content Remove="Database\**" />
+    <EmbeddedResource Remove="Database\**" />
+    <None Remove="Database\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.2" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="My_API">
+      <HintPath>..\My_API\bin\Debug\net7.0\My_API.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon> 
+     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

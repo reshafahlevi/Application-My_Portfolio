@@ -1,0 +1,20 @@
+﻿.dataTables-fontstyle {
+    font-family: tahoma !important;
+    font-size: 11px !important;
+    position: relative !important;
+    clear: both !important;
+    text-align: center !important; 
+}
+
+.dataTables-buttonstyle {
+    font-family: tahoma !important;
+    font-size: 11px !important;
+    position: relative !important;
+    clear: both !important;
+    width: 45% !important;
+    text-align: center !important;
+}
+
+
+
+

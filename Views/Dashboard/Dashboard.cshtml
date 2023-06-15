@@ -1,0 +1,574 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Additional : responsive datatables.net cdn css------------------------------------------------------------------------------*@
+@*<link type="text/css" rel="stylesheet" href="~/datatables/css/dataTables.bootstrap4.min.css" />*@
+<link type="text/css" rel="stylesheet" href="~/css/datatables_style.css" />
+<link type="text/css" rel="stylesheet" href="~/css/css_button_custome.css" />
+<link type="text/css" rel="stylesheet" href="~/css/sidebar_custome.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">   
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+<style type="text/css">
+/*css-button-custome_details-----------------------------------------------------------*/
+.css-button-custome_details 
+{
+    max-height: 30px !important;
+    height: 30px !important;
+    color: #000000;
+    font-size: 13px;
+    border-radius: 5px;
+    border: solid 0px #179dca;
+    text-shadow: 1px 1px 0px #a3a3a3;
+    box-shadow: 0px 0px 6px 0px #616174;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-family: Arial;
+    background: linear-gradient(180deg, #00bfff 10%, #179dca 100%);
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.css-button-custome_details:hover 
+{
+    background: linear-gradient(180deg, #179dca 10%, #00bfff 100%);
+}
+
+.css-button-custome_details-text 
+{
+    position: relative;
+    padding: 10px 18px;
+}
+
+.css-button-custome_details-icon 
+{
+    position: relative;
+    border-right: 1px solid #ffffff29;
+    box-shadow: inset rgb(0 0 0 / 14%) -1px 0 0;
+    padding: 10px 10px;
+}
+
+.css-button-custome_details-icon > i 
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+}
+</style>
+@*----------------------------------------------------------------------------------------------------------------------------*@
+
+@*<h1 style="text-align:center !important">Dashboards</h1>
+<br/>
+<br/>*@
+<br/>
+<br/>
+
+<body onload="OpenSidebar();">
+    <div class="container" id="Main" ClientIDMode="Static">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonMasterMenu" ClientIDMode="Static" asp-area="" asp-controller="MasterMenu" asp-action="MasterMenu">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-navicon" style="margin-top: -5px !important;"></i></span>
+                        @*<span class="css-button-custome_dashboard-text" style="position: relative; padding: 10px 56px;">
+                            Master Menu
+                        </span>*@
+                        <text style="text-align: center !important;margin: auto;">Master Menu</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonMasterPesanan" ClientIDMode="Static" asp-area="" asp-controller="MasterPesanan" asp-action="MasterPesanan" style="text-decoration:none !important">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-cart-plus" style="margin-top: -5px !important;"></i></span>
+                        @*<span class="css-button-custome_dashboard-text" style="position: relative; padding: 10px 48px;">
+                            Menu Pesanan
+                        </span>*@
+                        <text style="text-align: center !important;margin: auto;">Master Pesanan</text>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    <a style="text-decoration: none !important; max-width: 100% !important; width: 100% !important; margin-bottom: 15px !important;" class="css-button-custome_dashboard" id="ButtonMasterTransaksi" ClientIDMode="Static" asp-area="" asp-controller="MasterTransaksi" asp-action="MasterTransaksi" style="text-decoration:none !important">
+                        <span class="css-button-custome_dashboard-icon"><i class="fa fa-cart-arrow-down" style="margin-top: -5px !important;"></i><span></span><i class="fa fa-dollar" style="margin-top: -5px !important;"></i></span>
+                        @*<span class="css-button-custome_dashboard-text" style="position: relative; padding: 10px 37px;">
+                            Menu Transaksi
+                        </span>*@
+                        <text style="text-align: center !important; margin:auto;">Master Transaksi</text>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 1.5px solid black !important; margin-top: 0px !important;" />
+        <br/>
+
+        <div class="card">
+            <h5 class="card-header font-weight-light" style="text-align:center !important;">Dashboards</h5>
+            <!-- Datatables -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div style="width:100%; margin:0 auto;">
+                        <table id="DataTablesDashboardMenu" ClientIDMode="Static" class="table table-striped table-bordered dt-responsive nowrap dataTables-fontstyle" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="dataTables-fontstyle" style="width: 5% !important;">Id</th>
+                                    <th class="dataTables-fontstyle">Kode Menu</th>
+                                    <th class="dataTables-fontstyle">Nama Menu</th>
+                                    <th class="dataTables-fontstyle">Jenis Menu</th>
+                                    <th class="dataTables-fontstyle">Harga Satuan</th>
+                                    <th class="dataTables-fontstyle" style="width: 10% !important;">Actions</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="container">
+        <div class="page-wrapper chiller-theme toggled" style="height: 0px !important;" id="MySidebar" ClientIDMode="Static">
+            <a id="show-sidebar" ClientIDMode="Static" class="btn btn-sm btn-dark" href="#" onclick="OpenSidebar();">
+                <i class="fas fa-bars"></i>
+            </a>
+            <nav class="sidebar-wrapper" style="background-color: #1a2226  !important;">
+
+                <!-- Sidebar-Content  -->
+                <div class="sidebar-content">
+
+                    <!-- Sidebar-Brand -->
+                    <div class="sidebar-brand" style="margin-bottom: 5px !important;">
+                        <a style="font-size: 13px !important;">My Portfolio</a>
+                        <div id="close-sidebar" ClientIDMode="Static" onclick="HideSideBar();">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar-Header -->
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="img-responsive img-rounded" src="~/external/PhotoLogin.jpg" alt="User picture">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">
+                                <label id="SessionUsernameLogin" ClientIDMode="Static" runat="server" style="font-size:12px !important;">
+                                    @TempData["Username"]
+                                    @{
+                                        TempData.Keep("Username");
+                                    }
+                                </label>
+                            </span>
+                            <span class="user-role">Administrator</span>
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar-Search -->
+                    <div class="sidebar-search">
+                        <div>
+                            <div class="input-group">
+                                <input type="text" id="TextboxSearchSidebar" ClientIDMode="Static" class="form-control search-menu" placeholder="Search..."/>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar-Menu -->
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu"><span>General</span></li>
+                            <li class="sidebar-dropdown">
+                                <a href="#"><i class="fa fa-tachometer-alt"></i><span>Menu</span></a>
+                                <div class="sidebar-submenu">
+                                    <ul>                                    
+                                        <li><a href="#" onclick="RedirectPageMasterMenu();">Master Menu</a></li>
+                                        <li><a href="#" onclick="RedirectPageMasterPesanan();">Master Pesanan</a></li>
+                                        <li><a href="#" onclick="RedirectPageMasterTransaksi();">Master Transaksi</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#"><i class="fa fa-chart-line"></i><span>Reporting</span></a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li><a href="#">Report 1</a></li>
+                                        <li><a href="#">Report 2</a></li>
+                                        <li><a href="#">Report 3</a></li>
+                                        <li><a href="#">Report 4</a></li>
+                                        <li><a href="#">Report 5</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="header-menu"><span>Extra</span></li>
+                            <li class="sidebar-dropdown">
+                                <a href="#"><i class="fa fa-globe"></i><span>Contact</span></a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li><a href="#">Open street map</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sidebar-Footer -->
+                <div class="sidebar-footer">
+                    <a href="#"><i class="fa fa-bell"></i><span class="badge badge-pill badge-warning notification"></span></a>
+                    <a href="#"><i class="fa fa-envelope"></i><span class="badge badge-pill badge-success notification"></span></a>
+                    <a href="#"><i class="fa fa-power-off"></i></a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Popup Detail Item -->
+    <div class="container">
+        <div class="modal fade" id="PopUpDetailItem" ClientIDMode="Static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label for="LabelDetail" style="text-align: center !important;margin: auto;width: 100% !important;"><b>Detail Menu</b></label>
+                    <button type="button" onclick="ClosePopUpModal();" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: red;">x</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    @*<form>*@
+                        @*<div class="form-group">
+                            <label for="TextboxId">Id</label>
+                            <input type="number" class="form-control" id="TextboxId" ClientIDMode="Static" placeholder="" disabled>
+                        </div>*@
+                        <div class="form-group">
+                            <label for="TextboxJenisMenu">Jenis Menu</label>
+                            <input type="text" class="form-control" id="TextboxJenisMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="TextboxKodeMenu">Kode Menu</label>
+                            <input type="text" class="form-control" id="TextboxKodeMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="TextboxNamaMenu">Nama Menu</label>
+                            <input type="text" class="form-control" id="TextboxNamaMenu" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="TextboxHargaSatuan">Harga Satuan</label>
+                            <input type="text" class="form-control" id="TextboxHargaSatuan" ClientIDMode="Static" placeholder="" disabled>
+                        </div>
+                        @*<div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            input type="file" id="exampleInputFile">
+                            <p class="help-block">Example block-level help text here.</p>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>*@
+                    @*</form>*@
+                    <hr/>
+                    <div class="form-group">
+                        <button type="button" onclick="ClosePopUpModal();" class="btn btn-danger dataTables-buttonstyle" data-dismiss="modal" role="button" style="width:100% !important;height: 35px !important;margin-bottom: -15px !important;font-size: 14px !important;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+@section Scripts
+{
+    @*Additional : responsive datatables.net cdn script---------------------------------------------------------------------------*@
+    @*<script type="text/javascript" src="~/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+    @*----------------------------------------------------------------------------------------------------------------------------*@
+    <script type="text/javascript" src="~/js/sidebar_costume.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+    @*<script type="text/javascript" src="~/wwwroot/datatables/js/dataTablesDashboardMenu.js"></script>*@
+    @*----------------------------------------------------------------------------------------------------------------------------*@
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var DT = $("#DataTablesDashboardMenu").DataTable
+            ({
+                //"scrollY": 100,
+                //"scrollX": true,
+                //"scrollCollapse": true,
+                //"scrollResize": true,
+                //"responsive": true,
+                //"processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": true, // for disable multiple column at once
+                "fixedHeader": true, // this is fixed header
+                "pagingType": "full_numbers", // this is for paging type
+                "lengthChange": true, // this is for length change
+                "lengthMenu":  // this is for length dropdown
+                [
+                    [5, 10, 25, 50, 100, 1000],
+                    [5, 10, 25, 50, 100, 1000],
+                ],
+                "ajax":
+                {
+                    "url": "/Dashboard/LoadData",
+                    "type": "POST",
+                    "datatype": "JSON"
+                },
+                "columnDefs":
+                [{
+                    "targets": [0],
+                    "visible": true,
+                    "searchable": true,
+                    "className": "SelectedAllCheckbox",
+                    "checkboxes":
+                    {
+                        "selectRow": true,
+                        "selectAllPages": false
+                    },
+                }],
+                "select":
+                {
+                    "style": "multi",
+                    "selector": "td:first-child"
+                },
+                "order": [[0, "asc"]],
+                "columns":
+                [
+                    {
+                        "data": "id",
+                        "name": "id",
+                        "autoWidth": true, "target": 0, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "kodeMenu",
+                        "name": "kodeMenu",
+                        "autoWidth": true, "target": 1, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "namaMenu",
+                        "name": "namaMenu",
+                        "autoWidth": true, "target": 2, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "jenisMenu",
+                        "name": "jenisMenu",
+                        "autoWidth": true, "target": 3, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": "hargaSatuan",
+                        "name": "hargaSatuan",
+                        "autoWidth": true, "target": 4, "visible": true, "searchable": true, "orderable": true
+                    },
+                    {
+                        "data": null,
+                        "name": null,
+                        "autoWidth": true, "target": 5, "visible": true, "searchable": false, "orderable": false, "render": function (data, row, type, full, meta) 
+                        {
+                            return "<a href='#PopUpDetailItem' data-toggle='modal' data-target='#PopUpDetailItem' id='ButtonGetById' ClientIDMode='Static' class='css-button-custome_details' onclick='GetDetailMenuById(\"" + data.jenisMenu + "\",\"" + data.kodeMenu + "\",\"" + data.namaMenu + "\",\"" + data.hargaSatuan + "\");'><span class='css-button-custome_details-icon'><i class='fa fa-eye'></i></span><span class='css-button-custome_details-text'><span>Details</span></span></a>";  //onclick='GetDetailMenuById(" + data.id + ",\"" + data.kodeMenu + "\",\"" + data.namaMenu + "\",\"" + data.jenisMenu + "\",\"" + data.qty + "\");
+                        }
+                    }
+                    //{
+                    //    "data": null,
+                    //    "name": null,
+                    //    "autoWidth": true, "target": 5, "visible": true, "searchable": false, "orderable": false, "render": function (data, row, type, full, meta) 
+                    //    {
+                    //        return "<a href='#PopUpDetailItem' data-toggle='modal' data-target='#PopUpDetailItem' id='ButtonGetById' ClientIDMode='Static' class='btn btn-info dataTables-buttonstyle' style='width: 100% !important;' onclick='GetDetailMenuById(\"" + data.jenisMenu + "\",\"" + data.kodeMenu + "\",\"" + data.namaMenu + "\",\"" + data.hargaSatuan + "\");'>Details</a>";  //onclick='GetDetailMenuById(" + data.id + ",\"" + data.kodeMenu + "\",\"" + data.namaMenu + "\",\"" + data.jenisMenu + "\",\"" + data.qty + "\");
+                    //    }
+                    //}
+                    ////{
+                    ////    "data": null,"target": 6, "render": function (data, row, type, full, meta)
+                    ////    {
+                    ////        return "<a href='#' id='ButtonGetById' ClientIDMode='Static' class='btn btn-info dataTables-buttonstyle' style='width: 45% !important;' onclick=GetById('" + row.id + "');>Info</a> | <a href='#' id='ButtonDeleteById' ClientIDMode='Static' class='btn btn-danger dataTables-buttonstyle' style='width: 45% !important;' onclick=DeleteData('" + row.id + "');>Delete</a>";
+                    ////    }
+                    ////}
+                ]
+            });
+
+            $("#TextboxSearchSidebar").keyup(function () {
+                DT.search($(this).val()).draw();
+            });
+
+        });
+
+        function GetDetailMenuById(jenisMenu, kodeMenu, namaMenu, hargaSatuan) 
+        {
+            console.log("Jenis Menu : " + jenisMenu, "Kode Menu : " + kodeMenu, "Nama Menu : " + namaMenu, "Harga Sauan : " + hargaSatuan);
+            //alert("Menu yang anda pilih adalah Id nomor : " + id);
+            $("#PopUpDetailItem").modal('show');
+            //$("#TextboxId").val(id);
+            $("#TextboxHargaSatuan").val(hargaSatuan);
+            $("#TextboxJenisMenu").val(jenisMenu);
+            $("#TextboxKodeMenu").val(kodeMenu);
+            $("#TextboxNamaMenu").val(namaMenu);
+            /*------------------------------------------------------------------------*/
+            //var Id = $("#TextboxId").val(id);
+            //var SendData = { JenisMenu: JenisMenu };
+            //var SendData =
+            //{
+            //    Id: id
+            //}
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/Dashboard/GetDataById/" + id,
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "JSON",
+            //    data: SendData, //JSON.stringify(SendData),
+            //    success: function (response)
+            //    {
+            //        if (response != null)
+            //        {
+            //            //alert("Menu yang anda pilih adalah Id nomor : " + id);
+            //            console.log(jenisMenu, kodeMenu, namaMenu, qty, hargaSatuan);
+            //            $("#PopUpDetailItem").modal('show')
+            //            //$("#TextboxId").val(id);
+            //            $("#TextboxJenisMenu").val(jenisMenu);
+            //            $("#TextboxKodeMenu").val(kodeMenu);
+            //            $("#TextboxNamaMenu").val(namaMenu);
+            //            $("#TextboxHargaSatuan").val(hargaSatuan);
+            //        }
+            //        else
+            //        {
+            //            alert("Something went wrong !");
+            //        }
+            //    },
+            //    failure: function (response)
+            //    {
+            //        alert(response.responseText);
+            //    },
+            //    error: function (response)
+            //    {
+            //        alert(response.responseText);
+            //    }
+            //});
+            /*------------------------------------------------------------------------*/
+        }
+
+        function GetById(id) 
+        {
+            console.log("Id : " + id);
+            alert("Id : " + id);
+        }
+
+        function DeleteData(id) 
+        {
+            console.log("Id : " + id);
+            if (confirm("Are you sure you want to delete menu...?")) 
+            {
+                Delete(id);
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
+        function Delete(id) 
+        {
+            console.log("Id : " + id);
+            var url = "/Dashboard/DeleteData";
+            $.post(url, { ID: id }, function (data) 
+            {
+                if (data) 
+                {
+                    oTable = $('#DataTablesDashboardMenu').DataTable();
+                    oTable.draw();
+                    return true;
+                }
+                else 
+                {
+                    alert("Something went wrong...!");
+                    return false;
+                }
+            });
+        }
+
+        function ClosePopUpModal() 
+        {
+            $("#PopUpDetailItem").modal('hide')
+        }
+
+        function OpenSidebar() 
+        {
+            document.getElementById("Main").style.marginLeft = "100px";
+        }
+
+        function HideSideBar() 
+        {
+            document.getElementById("Main").style.marginLeft = "0px";
+        }
+
+        function RedirectPageMasterMenu()
+        {
+            window.location.href = "/MasterMenu/MasterMenu/";
+        }
+
+        function RedirectPageMasterPesanan() 
+        {
+            window.location.href = "/MasterPesanan/MasterPesanan/";
+        }
+
+        function RedirectPageMasterTransaksi() 
+        {
+            window.location.href = "/MasterTransaksi/MasterTransaksi/";
+        }
+
+        function SearchSidebar() 
+        {
+            //var Search = $("#TextboxSearchSidebar").val();
+            //$.ajax({
+            //    type: "POST",
+            //    url: '@Url.Action("SearchCustome", "Dashboard")?Search=' + Search,
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "JSON",
+            //    data: Search, //JSON.stringify(Search),
+            //    success: function (response)
+            //    {
+            //        if (response != null)
+            //        {
+            //            //alert(Search);
+            //            console.log(Search);
+            //        }
+            //        else
+            //        {
+            //             alert("Something went wrong...!");
+            //        }
+            //    },
+            //    failure: function (response)
+            //    {
+            //        alert(response.responseText);
+            //    },
+            //    error: function (response)
+            //    {
+            //        alert(response.responseText);
+            //    }
+            //});
+        }
+    </script>
+}
