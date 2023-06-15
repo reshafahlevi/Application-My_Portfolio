@@ -139,7 +139,7 @@ namespace My_Portfolio.Controllers
 							TempData["Username"] = Obj.UsernameLogin;
                             continue;
 						}
-						else
+						else 
 						{
 							getStatus.getStatus = 0;
 							getStatus.Username = string.Empty;
